@@ -26,12 +26,14 @@ import banner from './banner/banner.directive';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+import mine from './mine/mine.component';
+import requests from './requests/requests.component';
 
 import './app.scss';
 
 angular.module('myBookTradingAppApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io',
   uiRouter, uiBootstrap, _Auth, account, admin, 'validation.match', navbar, footer, main,
-  constants, socket, util, banner
+  constants, socket, util, banner, mine, requests
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

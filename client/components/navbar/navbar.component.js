@@ -4,11 +4,7 @@
 import angular from 'angular';
 
 export class NavbarComponent {
-  menu = [{
-    title: 'Home',
-    state: 'main'
-  }];
-
+  menu;
   isCollapsed = true;
 
   constructor(Auth) {
@@ -17,6 +13,12 @@ export class NavbarComponent {
     this.isLoggedIn = Auth.isLoggedInSync;
     this.isAdmin = Auth.isAdminSync;
     this.getCurrentUser = Auth.getCurrentUserSync;
+
+    this.menu = [{
+      title: 'Home',
+      state: 'main',
+      hide: false
+    }];
   }
 
 }

@@ -1,0 +1,18 @@
+mine{
+    .book{
+        display: inline-block;
+        padding: 2px;
+        img{
+            height: 200px;
+            width: 130px;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+        a{
+            right: 128px;
+            bottom: 85px;
+            position: relative;
+        }
+    }
+}

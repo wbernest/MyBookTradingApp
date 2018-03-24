@@ -57,9 +57,7 @@ export default class SettingsController {
       this.$http.patch('/api/users/' + this.me._id, patchObject ).then(response => {
         this.me._id = response.data._id;
         this.me.city = response.data.city;
-        this.me.state = response.data.state;
-        console.log(response)
-      
+        this.me.state = response.data.state;     
       });
     }
   }

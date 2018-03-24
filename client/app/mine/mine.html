@@ -1,0 +1,27 @@
+<banner text="Mine Books!"></banner>
+<div class="container">  
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="newBook-form" ng-submit="mineCtrl.addBook(newBook-form)">
+                <p class="input-group">
+                    <input type="text" class="form-control" placeholder="Add Book" ng-model="mineCtrl.newBook">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Add Book</button>
+                    </span>
+                </p> 
+            </form>    
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="book" ng-repeat="x in mineCtrl.myBooks">
+                <img src="{{x.img}}">
+                <a ng-click="mineCtrl.removeBook(x)" href="#">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+      

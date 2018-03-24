@@ -31,5 +31,22 @@ main {
       width: 70%
     }
   }
+
+  .book{
+    display: inline-block;
+    padding: 2px;
+    img{
+        height: 200px;
+        width: 130px;
+        position: relative;
+        left: 0px;
+        top: 0px;
+    }
+  }
+
+  .scroll{
+    overflow-y: auto;
+  }
+
 }
 

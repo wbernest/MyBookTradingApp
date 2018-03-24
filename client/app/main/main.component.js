@@ -5,36 +5,37 @@ import routing from './main.routes';
 export class MainController {
   awesomeThings = [];
   newThing = '';
-
+  isAuthenticated = false;
+  books = [];
   /*@ngInject*/
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket, Auth) {
     this.$http = $http;
     this.socket = socket;
+    this.Auth = Auth;
 
     $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('book');
     });
+
+    this.Auth.isLoggedIn(res => {
+      this.isAuthenticated = (res == "user");
+    });
+
   }
 
   $onInit() {
-    this.$http.get('/api/things')
+    this.$http.get('/api/books')
       .then(response => {
-        this.awesomeThings = response.data;
-        this.socket.syncUpdates('thing', this.awesomeThings);
+        this.books = response.data;
+        this.socket.syncUpdates('book', this.books);
       });
   }
 
-  addThing() {
-    if(this.newThing) {
-      this.$http.post('/api/things', {
-        name: this.newThing
-      });
-      this.newThing = '';
-    }
-  }
-
-  deleteThing(thing) {
-    this.$http.delete(`/api/things/${thing._id}`);
+  calculateRemainingHeight(){
+    return window.innerHeight 
+              - document.getElementsByTagName('navbar')[0].clientHeight
+              - document.getElementsByTagName('banner')[0].clientHeight
+              - document.getElementsByTagName('footer')[0].clientHeight - 50;
   }
 }
 
