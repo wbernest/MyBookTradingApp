@@ -3,7 +3,7 @@
 <div class="container">  
   <div class="row" ng-if="$ctrl.isAuthenticated">
     <div class="col-sm-12">
-        <form class="thing-form">
+        <form class="search-form">
               <input type="text" class="form-control" placeholder="Search Books" ng-model="$ctrl.newThing">
         </form>    
     </div>
@@ -12,6 +12,10 @@
       <div class="col-sm-12">
           <div class="book" ng-repeat="x in $ctrl.books">
               <img src="{{x.img}}">
+              <a title="Request {{x.name}}" ng-click="$ctrl.requestBook(x)" href="#">
+                  <span class="glyphicon glyphicon-bookmark"></span>
+              </a>
+
           </div>
       </div>
     </div>

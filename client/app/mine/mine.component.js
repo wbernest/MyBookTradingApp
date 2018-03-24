@@ -48,6 +48,14 @@ export class MineComponent {
   removeBook(book){
     this.$http.delete('api/books/' + book._id);
   }
+
+  calculateRemainingHeight(){
+    return window.innerHeight 
+              - document.getElementsByTagName('navbar')[0].clientHeight
+              - document.getElementsByTagName('banner')[0].clientHeight
+              - document.getElementsByTagName('footer')[0].clientHeight - 50;
+  }
+
 }
 
 export default angular.module('myBookTradingAppApp.mine', [uiRouter])

@@ -1,18 +1,30 @@
 mine{
+    .container{
+        margin-top: 20px;
+      }
+    
     .book{
         display: inline-block;
         padding: 2px;
+        height: 200px;
+        width: 130px;
+
         img{
-            height: 200px;
-            width: 130px;
+            height: 196px;
+            width: 126px;
             position: relative;
             left: 0px;
             top: 0px;
         }
         a{
-            right: 128px;
-            bottom: 85px;
+            left: 5px;
+            top: -190px;
             position: relative;
         }
     }
+
+    .scroll{
+        overflow-y: auto;
+    }
+    
 }

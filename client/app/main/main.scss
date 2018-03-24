@@ -3,7 +3,7 @@ main {
     margin-top: 20px;
   }
   .search-form {
-    margin: 20px 0;
+    margin-bottom: 10px;
   }
 
   .create-vote-form {
@@ -35,13 +35,21 @@ main {
   .book{
     display: inline-block;
     padding: 2px;
+    height: 200px;
+    width: 130px;
     img{
-        height: 200px;
-        width: 130px;
+        height: 196px;
+        width: 126px;
         position: relative;
         left: 0px;
         top: 0px;
     }
+    a{
+      left: 110px;
+      top: -195px;
+      position: relative;
+    }
+
   }
 
   .scroll{

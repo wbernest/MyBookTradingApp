@@ -12,13 +12,13 @@ export class MainController {
     this.$http = $http;
     this.socket = socket;
     this.Auth = Auth;
-
+    this.me = Auth.getCurrentUserSync();
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('book');
     });
 
     this.Auth.isLoggedIn(res => {
-      this.isAuthenticated = (res == "user");
+      this.isAuthenticated = (res != "");
     });
 
   }
@@ -26,9 +26,13 @@ export class MainController {
   $onInit() {
     this.$http.get('/api/books')
       .then(response => {
-        this.books = response.data;
-        this.socket.syncUpdates('book', this.books);
+        this.books = response.data.filter( x => x.reader == "");
+        this.socket.syncUpdates('book', this.books, msg => this.books = this.books.filter(x => x.reader==""));
       });
+  }
+
+  requestBook(book){
+    this.$http.patch('/api/books/'+book._id, [{op: 'replace', path: '/reader', value: this.me._id}])
   }
 
   calculateRemainingHeight(){
