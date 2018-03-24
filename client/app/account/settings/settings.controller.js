@@ -12,10 +12,22 @@ export default class SettingsController {
   message = '';
   submitted = false;
 
-
+  me = {
+    _id : '',
+    city: '',
+    state: '',
+    name: ''
+  };
   /*@ngInject*/
-  constructor(Auth) {
+  constructor(Auth, $http) {
     this.Auth = Auth;
+    this.$http = $http;
+    this.$http.get('/api/users/me').then(response=> {
+      this.me._id = response.data._id;
+      this.me.city = response.data.city;
+      this.me.state = response.data.state;
+      this.me.name = response.data.name;
+    })
   }
 
   changePassword(form) {
@@ -33,4 +45,23 @@ export default class SettingsController {
         });
     }
   }
+
+  changeInformation(form) {
+    var patchObject = [
+      {op: 'replace', path: '/name', value: this.me.name}, 
+      {op: 'replace', path: '/city', value: this.me.city}, 
+      {op: 'replace', path: '/state', value: this.me.state}
+    ];
+
+    if(form.$valid) {
+      this.$http.patch('/api/users/' + this.me._id, patchObject ).then(response => {
+        this.me._id = response.data._id;
+        this.me.city = response.data.city;
+        this.me.state = response.data.state;
+        console.log(response)
+      
+      });
+    }
+  }
+
 }

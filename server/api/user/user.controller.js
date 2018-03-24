@@ -3,6 +3,42 @@
 import User from './user.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import jsonpatch from 'fast-json-patch';
+
+function patchUpdates(patches) {
+  return function(entity) {
+    try {
+      // eslint-disable-next-line prefer-reflect
+      console.log(entity,patches);
+      jsonpatch.applyPatch(entity, patches, /*validate*/ true);
+      console.log(entity);
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return entity.save();
+  };
+}
+
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function(entity) {
+    if(entity) {
+      return res.status(statusCode).json(entity);
+    }
+    return null;
+  };
+}
+
+function handleEntityNotFound(res) {
+  return function(entity) {
+    if(!entity) {
+      res.status(404).end();
+      return null;
+    }
+    return entity;
+  };
+}
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -96,6 +132,18 @@ export function changePassword(req, res) {
         return res.status(403).end();
       }
     });
+}
+
+// Updates an existing User in the DB
+export function patch(req, res) {
+  if(req.body._id) {
+    Reflect.deleteProperty(req.body, '_id');
+  }
+  return User.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then(patchUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
 }
 
 /**

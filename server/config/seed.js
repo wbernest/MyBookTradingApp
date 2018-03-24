@@ -51,13 +51,17 @@ export default function seedDatabaseIfNeeded() {
           provider: 'local',
           name: 'Test User',
           email: 'test@example.com',
-          password: 'test'
+          password: 'test',
+          city: 'New York City',
+          state: 'New York'
         }, {
           provider: 'local',
           role: 'admin',
           name: 'Admin',
           email: 'admin@example.com',
-          password: 'admin'
+          password: 'admin',
+          city: 'New York City',
+          state: 'New York'
         })
         .then(() => console.log('finished populating users'))
         .catch(err => console.log('error populating users', err));

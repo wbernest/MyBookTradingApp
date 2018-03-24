@@ -7,6 +7,8 @@ import {registerEvents} from './user.events';
 
 var UserSchema = new Schema({
   name: String,
+  city: String,
+  state: String,
   email: {
     type: String,
     lowercase: true,
