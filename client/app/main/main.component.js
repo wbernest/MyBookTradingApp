@@ -27,12 +27,12 @@ export class MainController {
     this.$http.get('/api/books')
       .then(response => {
         this.books = response.data.filter( x => x.reader == "");
-        this.socket.syncUpdates('book', this.books, msg => this.books = this.books.filter(x => x.reader==""));
+        this.socket.syncUpdates('book', this.books, msg => this.books = this.books.filter(x => x.readerid ==""));
       });
   }
 
   requestBook(book){
-    this.$http.patch('/api/books/'+book._id, [{op: 'replace', path: '/reader', value: this.me._id}])
+    this.$http.patch('/api/books/'+book._id, [{op: 'replace', path: '/readerid', value: this.me._id},{op: 'replace', path: '/reader', value: this.me.name}])
   }
 
   calculateRemainingHeight(){

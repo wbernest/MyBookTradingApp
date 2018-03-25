@@ -19,6 +19,6 @@ module.exports = {
     uri: process.env.MONGODB_URI
       || process.env.MONGOHQ_URL
       || process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME
-      || 'mongodb://localhost/mybooktradingapp'
+      || 'mongodb://service:1234@ds223609.mlab.com:23609/wbernest-my-book-trading-app'
   }
 };

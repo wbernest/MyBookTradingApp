@@ -1,0 +1,53 @@
+requests {
+    .container{
+      margin-top: 20px;
+    }
+    ul{
+      overflow: auto;
+      max-height: 300px;
+    }
+    .badge{
+      float: right;
+    }
+    div.panel-body{
+      img{
+        width: 30%;
+        height: auto;
+        max-height: 200px;
+        position: relative;
+        float: left;
+      }
+      div.row{
+        position: relative;
+        float: right;
+        width: 70%
+      }
+    }
+  
+    .book{
+      display: inline-block;
+      padding: 2px;
+      height: 200px;
+      width: 130px;
+      img{
+          height: 196px;
+          width: 126px;
+          position: relative;
+          left: 0px;
+          top: 0px;
+      }
+      a{
+        left: 110px;
+        top: -195px;
+        position: relative;
+      }
+  
+    }
+  
+    .scroll{
+      overflow-y: auto;
+    }
+  
+  }
+  
+  

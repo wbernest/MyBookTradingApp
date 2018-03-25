@@ -1,1 +1,49 @@
-<div>This is the requests view.</div>
+<banner text="You Haz Requests!"></banner>
+
+<div class="container">  
+  <div class="row scroll" ng-style="{'max-height': requestsCtrl.calculateRemainingHeight()}">
+      <div class="col-sm-6">
+        <h3>My Requests</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Book</td>
+                    <td>Reader</td>
+                    <td>Approved</td>
+                    <td>Return</td>
+                </tr>
+            </thead>
+            <tbody class="scroll">
+                <tr ng-repeat="x in requestsCtrl.myRequests">
+                    <td>{{x.name}}</td>
+                    <td>{{x.reader}}</td>
+                    <td>{{x.approved}}</td>
+                    <td><button ng-click="requestsCtrl.returnBook(x)" class="btn btn-default"><span class="glyphicon glyphicon-share-alt"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6">
+          <h3>Their Requests</h3>
+          <table class="table">
+                <thead>
+                    <tr>
+                        <td>Book</td>
+                        <td>Owner</td>
+                        <td>Approved</td>
+                        <td>Approve/Deny</td>
+                    </tr>
+                </thead>
+                <tbody class="scroll">
+                    <tr ng-repeat="x in requestsCtrl.theirRequests">
+                        <td>{{x.name}}</td>
+                        <td>{{x.owner}}</td>
+                        <td>{{x.approved}}</td>
+                        <td><button ng-click="requestsCtrl.approveRequest(x)" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button><button ng-click="requestsCtrl.denyRequest(x)" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></td>
+                    </tr>
+
+                </tbody>
+            </table>    
+      </div>  
+    </div>  
+</div>

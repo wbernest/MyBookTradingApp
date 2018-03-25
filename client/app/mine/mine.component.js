@@ -27,7 +27,7 @@ export class MineComponent {
   $onInit() {
     this.$http.get('/api/books')
       .then(response => {
-        this.myBooks = response.data.filter(x=> x.owner == this.user._id);
+        this.myBooks = response.data.filter(x=> x.ownerid == this.user._id);
         this.socket.syncUpdates('book', this.myBooks);
       });
   }
@@ -35,10 +35,12 @@ export class MineComponent {
   addBook(form){
     var newBook = {
       name: this.newBook,
-      owner: this.user._id,
+      ownerid: this.user._id,
+      owner: this.user.name,
       approved: false,
       img: '',
-      reader: ''
+      reader: '',
+      readerid: ''
     }
 
     this.$http.post('/api/books', newBook);
